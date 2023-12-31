@@ -18,10 +18,10 @@ const sendMail = (mailData) => {
   });
 
   const mailOptions = {
-    from: mailData?.email,
+    from: process.env.EMAIL,
     to: process.env.EMAIL,
     subject: `Email from ${mailData?.name}`,
-    text: mailData?.message,
+    text: `Email: ${email} Message: ${message}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -33,7 +33,6 @@ const sendMail = (mailData) => {
   });
 };
 
-
 app.get("/", (req, res) => {
   res.send("portfolio server is running");
 });
@@ -41,7 +40,7 @@ app.get("/", (req, res) => {
 app.post("/sendEmail", (req, res) => {
   const dataFromContact = req.body;
   sendMail(dataFromContact);
-  res.send({ message: "Email sent" });
+  res.send({ message: "email sent" });
 });
 
 app.listen(port, () => {
