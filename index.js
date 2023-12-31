@@ -40,9 +40,8 @@ app.get("/", (req, res) => {
 
 app.post("/sendEmail", (req, res) => {
   const dataFromContact = req.body;
-  console.log(dataFromContact);
   sendMail(dataFromContact);
-  res.send({ message: "data got from backend" });
+  res.send({ message: "Email sent" });
 });
 
 app.listen(port, () => {
